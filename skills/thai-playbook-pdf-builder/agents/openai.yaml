@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thai Playbook PDF Builder"
+  short_description: "Create and QA practical Thai PDF playbooks from source material."
+  default_prompt: "Create a Thai playbook package from the provided source materials. Include a practical framework, worksheets, prompt pack when useful, Facebook caption, carousel outline, source credit, research notes, and PDF QA."

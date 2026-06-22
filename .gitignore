@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.test-tmp/
+.venv/
+venv/
+
+# Generated playbook and QA artifacts
+outputs/
+qa_pages/
+page-*.png
+contact_sheet.jpg
+*.pdf
+
+# Local inputs, browser state, and secrets
+inputs/
+chrome_profile/
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,25 @@
+name: Improvement proposal
+description: เสนอการปรับ workflow, reference, template หรือ QA
+title: "[Improvement]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: สิ่งที่ต้องการปรับปรุง
+      description: ปัญหาของผู้ใช้หรือข้อจำกัดที่ข้อเสนอนี้แก้
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: แนวทางที่เสนอ
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: ตัวอย่างหรือเกณฑ์สำเร็จ
+      description: Prompt หรือลักษณะ output ที่ควรดีขึ้น
+    validations:
+      required: true

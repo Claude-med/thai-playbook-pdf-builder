@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <title>{{TITLE}}</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #111418;
+      background: #e9e9e9;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+      padding: 16mm 16mm 14mm;
+      background: #fcf4ed;
+    }
+    .page:nth-child(even) { background: #fff7ef; }
+    header {
+      height: 17mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8mm;
+    }
+    main {
+      height: 238mm;
+      padding-top: 7mm;
+      display: grid;
+      align-content: start;
+      gap: 5mm;
+    }
+    footer {
+      position: absolute;
+      left: 16mm;
+      right: 16mm;
+      bottom: 9mm;
+      display: flex;
+      justify-content: space-between;
+      gap: 8mm;
+      border-top: 1px solid #e6cbb2;
+      padding-top: 4mm;
+      color: #6b5a50;
+      font-size: 8.6pt;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: 25pt;
+      line-height: 1.16;
+      letter-spacing: 0;
+      color: #111418;
+    }
+    h2 {
+      font-size: 15pt;
+      line-height: 1.28;
+      color: #985a3f;
+    }
+    h3 {
+      font-size: 12pt;
+      line-height: 1.32;
+      color: #111418;
+    }
+    p, li, td, th {
+      font-size: 10.2pt;
+      line-height: 1.55;
+      color: #5f5048;
+    }
+    ul, ol {
+      margin: 0;
+      padding-left: 5mm;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      max-width: 126mm;
+      min-height: 8mm;
+      padding: 1.5mm 4mm;
+      border-radius: 999px;
+      background: #fff7ef;
+      border: 1px solid #e6cbb2;
+      color: #b95835;
+      font-weight: 700;
+      font-size: 9.6pt;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .logo {
+      max-width: 34mm;
+      max-height: 12mm;
+      object-fit: contain;
+    }
+    .stack { display: grid; gap: 4mm; }
+    .tight { display: grid; gap: 2.5mm; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+    .card,
+    .callout,
+    .prompt-box,
+    .worksheet,
+    .source-label,
+    .scorecard,
+    .comparison {
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid #e6cbb2;
+      border-radius: 8px;
+      padding: 5mm;
+    }
+    .callout {
+      border-left: 4px solid #d6693f;
+      background: #fff7ef;
+    }
+    .label {
+      display: block;
+      margin-bottom: 1.5mm;
+      color: #b95835;
+      font-size: 8.8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .framework-map {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3mm;
+    }
+    .framework-step {
+      min-height: 31mm;
+      padding: 4mm;
+      border: 1px solid #e6cbb2;
+      border-radius: 8px;
+      background: #fff7ef;
+    }
+    .module-header {
+      display: grid;
+      grid-template-columns: 17mm 1fr;
+      gap: 4mm;
+      align-items: center;
+    }
+    .module-number {
+      display: grid;
+      place-items: center;
+      width: 17mm;
+      height: 17mm;
+      border-radius: 50%;
+      background: #111418;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13pt;
+    }
+    .steps {
+      display: grid;
+      gap: 3mm;
+      counter-reset: step;
+    }
+    .step {
+      position: relative;
+      min-height: 14mm;
+      padding: 3.5mm 4mm 3.5mm 11mm;
+      border-left: 3px solid #d6693f;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .62);
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 3mm;
+      top: 3.5mm;
+      color: #b95835;
+      font-weight: 700;
+    }
+    .prompt-box pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #111418;
+      font-size: 9.6pt;
+      line-height: 1.5;
+    }
+    .worksheet {
+      min-height: 42mm;
+      background-image: linear-gradient(to bottom, rgba(230, 203, 178, .62) 1px, transparent 1px);
+      background-size: 100% 9mm;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 9.4pt;
+    }
+    th, td {
+      border: 1px solid #e6cbb2;
+      padding: 2.7mm;
+      vertical-align: top;
+      word-break: break-word;
+    }
+    th {
+      background: #111418;
+      color: #fff;
+      text-align: left;
+      font-weight: 700;
+    }
+    .source-label {
+      display: grid;
+      gap: 2mm;
+      border-left: 4px solid #111418;
+      font-size: 9.4pt;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 7mm;
+      padding: 1mm 3mm;
+      border-radius: 999px;
+      background: #f2e2d4;
+      color: #6b3f2e;
+      font-size: 8.8pt;
+      font-weight: 700;
+    }
+    .scorecard td:nth-child(2) { text-align: center; font-weight: 700; color: #111418; }
+    .cta {
+      display: grid;
+      place-items: center;
+      min-height: 42mm;
+      padding: 7mm;
+      border-radius: 8px;
+      background: #111418;
+      color: #fff;
+      text-align: center;
+      font-size: 16pt;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+    .cta * { color: #fff; }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <header>
+      <span class="eyebrow">{{EYEBROW}}</span>
+      <span>{{LOGO_OR_BRAND}}</span>
+    </header>
+    <main>
+      <h1>{{PAGE_TITLE}}</h1>
+      {{PAGE_BODY}}
+    </main>
+    <footer>
+      <span>{{FOOTER_LEFT}}</span>
+      <span>{{PAGE_NUMBER}}</span>
+    </footer>
+  </section>
+</body>
+</html>
